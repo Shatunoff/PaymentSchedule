@@ -83,11 +83,18 @@
             // 
             // dgvSchedule
             // 
+            this.dgvSchedule.AllowUserToAddRows = false;
+            this.dgvSchedule.AllowUserToDeleteRows = false;
+            this.dgvSchedule.AllowUserToResizeColumns = false;
+            this.dgvSchedule.AllowUserToResizeRows = false;
             this.dgvSchedule.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSchedule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSchedule.Location = new System.Drawing.Point(3, 16);
             this.dgvSchedule.Name = "dgvSchedule";
+            this.dgvSchedule.ReadOnly = true;
+            this.dgvSchedule.RowHeadersVisible = false;
+            this.dgvSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSchedule.Size = new System.Drawing.Size(548, 339);
             this.dgvSchedule.TabIndex = 0;
             // 
@@ -232,6 +239,7 @@
             // 
             // nudCreditAmount
             // 
+            this.nudCreditAmount.Enabled = false;
             this.nudCreditAmount.Increment = new decimal(new int[] {
             1000,
             0,
@@ -266,6 +274,7 @@
             this.btnClear.TabIndex = 13;
             this.btnClear.Text = "Очистить расчеты";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // comboPaymentType
             // 
@@ -300,9 +309,24 @@
             // nudCreditPeriod
             // 
             this.nudCreditPeriod.Location = new System.Drawing.Point(183, 133);
+            this.nudCreditPeriod.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudCreditPeriod.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudCreditPeriod.Name = "nudCreditPeriod";
             this.nudCreditPeriod.Size = new System.Drawing.Size(133, 20);
             this.nudCreditPeriod.TabIndex = 9;
+            this.nudCreditPeriod.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label4
             // 
@@ -316,6 +340,11 @@
             // nudCreditRate
             // 
             this.nudCreditRate.Location = new System.Drawing.Point(183, 107);
+            this.nudCreditRate.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.nudCreditRate.Name = "nudCreditRate";
             this.nudCreditRate.Size = new System.Drawing.Size(133, 20);
             this.nudCreditRate.TabIndex = 7;
@@ -363,6 +392,7 @@
             this.nudInitialPayment.Name = "nudInitialPayment";
             this.nudInitialPayment.Size = new System.Drawing.Size(133, 20);
             this.nudInitialPayment.TabIndex = 2;
+            this.nudInitialPayment.ThousandsSeparator = true;
             // 
             // nudCostOfPurchase
             // 
@@ -380,6 +410,7 @@
             this.nudCostOfPurchase.Name = "nudCostOfPurchase";
             this.nudCostOfPurchase.Size = new System.Drawing.Size(133, 20);
             this.nudCostOfPurchase.TabIndex = 1;
+            this.nudCostOfPurchase.ThousandsSeparator = true;
             // 
             // checkCalcAtSum
             // 

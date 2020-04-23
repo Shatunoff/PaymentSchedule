@@ -12,6 +12,8 @@ namespace PaymentSchedule
 {
     public partial class Form1 : Form
     {
+        DataTable dtShedule = new DataTable();
+
         public Form1()
         {
             InitializeComponent();
@@ -19,15 +21,23 @@ namespace PaymentSchedule
 
         private void checkCalcAtSum_CheckedChanged(object sender, EventArgs e)
         {
-            nudCreditAmount.ReadOnly = nudCostOfPurchase.Enabled = nudInitialPayment.Enabled = !checkCalcAtSum.Checked;
-            //nudCreditAmount.Enabled = checkCalcAtSum.Checked;
+            nudCostOfPurchase.Enabled = nudInitialPayment.Enabled = !checkCalcAtSum.Checked;
+            nudCreditAmount.Enabled = checkCalcAtSum.Checked;
         }
 
         // Рассчитать стоимость
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             Calculator calculator = new Calculator(nudCreditAmount.Value, nudCreditRate.Value, (int)nudCreditPeriod.Value, (CalcType)comboPaymentType.SelectedIndex);
-            dgvSchedule.DataSource = calculator.GetShedule();
+            dtShedule = calculator.GetShedule();
+            Binding binding = new Binding("DataSource", dtShedule, "DefaultView");
+            dgvSchedule.DataBindings.Add(binding);
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            dtShedule.Clear();
+
         }
     }
 }
