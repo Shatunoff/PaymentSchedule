@@ -19,12 +19,15 @@ namespace PaymentSchedule
 
         private void checkCalcAtSum_CheckedChanged(object sender, EventArgs e)
         {
-            nudCostOfPurchase.Enabled = nudInitialPayment.Enabled = !checkCalcAtSum.Checked;
+            nudCreditAmount.ReadOnly = nudCostOfPurchase.Enabled = nudInitialPayment.Enabled = !checkCalcAtSum.Checked;
+            //nudCreditAmount.Enabled = checkCalcAtSum.Checked;
         }
 
-        private void tbCreditAmount_TextChanged(object sender, EventArgs e)
+        // Рассчитать стоимость
+        private void btnCalculate_Click(object sender, EventArgs e)
         {
-            
+            Calculator calculator = new Calculator(nudCreditAmount.Value, nudCreditRate.Value, (int)nudCreditPeriod.Value, (CalcType)comboPaymentType.SelectedIndex);
+            dgvSchedule.DataSource = calculator.GetShedule();
         }
     }
 }

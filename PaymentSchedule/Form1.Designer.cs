@@ -43,6 +43,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.nudCreditAmount = new System.Windows.Forms.NumericUpDown();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.comboPaymentType = new System.Windows.Forms.ComboBox();
@@ -57,12 +58,12 @@
             this.nudInitialPayment = new System.Windows.Forms.NumericUpDown();
             this.nudCostOfPurchase = new System.Windows.Forms.NumericUpDown();
             this.checkCalcAtSum = new System.Windows.Forms.CheckBox();
-            this.tbCreditAmount = new System.Windows.Forms.TextBox();
             this.gbSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCreditAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCreditPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCreditRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudInitialPayment)).BeginInit();
@@ -79,7 +80,6 @@
             this.gbSchedule.TabIndex = 0;
             this.gbSchedule.TabStop = false;
             this.gbSchedule.Text = "График платежей";
-            this.gbSchedule.Visible = false;
             // 
             // dgvSchedule
             // 
@@ -207,7 +207,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.tbCreditAmount);
+            this.tabPage1.Controls.Add(this.nudCreditAmount);
             this.tabPage1.Controls.Add(this.btnCalculate);
             this.tabPage1.Controls.Add(this.btnClear);
             this.tabPage1.Controls.Add(this.comboPaymentType);
@@ -230,6 +230,24 @@
             this.tabPage1.Text = "Исходные данные";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // nudCreditAmount
+            // 
+            this.nudCreditAmount.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudCreditAmount.Location = new System.Drawing.Point(183, 81);
+            this.nudCreditAmount.Maximum = new decimal(new int[] {
+            276447232,
+            23283,
+            0,
+            0});
+            this.nudCreditAmount.Name = "nudCreditAmount";
+            this.nudCreditAmount.Size = new System.Drawing.Size(133, 20);
+            this.nudCreditAmount.TabIndex = 15;
+            this.nudCreditAmount.ThousandsSeparator = true;
+            // 
             // btnCalculate
             // 
             this.btnCalculate.Location = new System.Drawing.Point(183, 186);
@@ -238,6 +256,7 @@
             this.btnCalculate.TabIndex = 14;
             this.btnCalculate.Text = "Рассчитать стоимость";
             this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // btnClear
             // 
@@ -373,13 +392,6 @@
             this.checkCalcAtSum.UseVisualStyleBackColor = true;
             this.checkCalcAtSum.CheckedChanged += new System.EventHandler(this.checkCalcAtSum_CheckedChanged);
             // 
-            // tbCreditAmount
-            // 
-            this.tbCreditAmount.Location = new System.Drawing.Point(183, 81);
-            this.tbCreditAmount.Name = "tbCreditAmount";
-            this.tbCreditAmount.Size = new System.Drawing.Size(133, 20);
-            this.tbCreditAmount.TabIndex = 15;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,6 +412,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCreditAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCreditPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCreditRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudInitialPayment)).EndInit();
@@ -439,7 +452,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox tbCreditAmount;
+        private System.Windows.Forms.NumericUpDown nudCreditAmount;
     }
 }
 
