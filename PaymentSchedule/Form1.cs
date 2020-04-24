@@ -68,5 +68,19 @@ namespace PaymentSchedule
             decimal cAm = Calculator.GetCreditAmount(nudCostOfPurchase.Value, nudInitialPayment.Value);
             nudCreditAmount.Value = cAm < 0? cAm : 0;
         }
+
+        private void comboPaymentType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboPaymentType.SelectedIndex == 0)
+                toolTip.SetToolTip(comboPaymentType, "Вариант ежемесячного платежа по кредиту, когда размер ежемесячного платежа остаётся постоянным на всём периоде кредитования.");
+            if (comboPaymentType.SelectedIndex == 1)
+                toolTip.SetToolTip(comboPaymentType, "Вариант ежемесячного платежа по кредиту, когда размер ежемесячного платежа по погашению кредита постепенно уменьшается к концу периода кредитования.");
+        }
+
+        private void nuds_Enter(object sender, EventArgs e)
+        {
+            if (sender is NumericUpDown)
+                (sender as NumericUpDown).Select(0, (sender as NumericUpDown).Value.ToString().Length);
+        }
     }
 }

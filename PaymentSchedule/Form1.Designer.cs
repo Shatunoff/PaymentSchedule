@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbSchedule = new System.Windows.Forms.GroupBox();
             this.dgvSchedule = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -58,6 +59,7 @@
             this.nudInitialPayment = new System.Windows.Forms.NumericUpDown();
             this.nudCostOfPurchase = new System.Windows.Forms.NumericUpDown();
             this.checkCalcAtSum = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.gbSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -260,6 +262,7 @@
             this.nudCreditAmount.Size = new System.Drawing.Size(133, 20);
             this.nudCreditAmount.TabIndex = 3;
             this.nudCreditAmount.ThousandsSeparator = true;
+            this.nudCreditAmount.Enter += new System.EventHandler(this.nuds_Enter);
             // 
             // btnCalculate
             // 
@@ -292,6 +295,7 @@
             this.comboPaymentType.Name = "comboPaymentType";
             this.comboPaymentType.Size = new System.Drawing.Size(133, 21);
             this.comboPaymentType.TabIndex = 6;
+            this.comboPaymentType.SelectedIndexChanged += new System.EventHandler(this.comboPaymentType_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -332,6 +336,7 @@
             0,
             0,
             0});
+            this.nudCreditPeriod.Enter += new System.EventHandler(this.nuds_Enter);
             // 
             // label4
             // 
@@ -369,6 +374,7 @@
             0,
             0,
             65536});
+            this.nudCreditRate.Enter += new System.EventHandler(this.nuds_Enter);
             // 
             // label3
             // 
@@ -415,6 +421,7 @@
             this.nudInitialPayment.TabIndex = 2;
             this.nudInitialPayment.ThousandsSeparator = true;
             this.nudInitialPayment.ValueChanged += new System.EventHandler(this.CalcCreditAmount);
+            this.nudInitialPayment.Enter += new System.EventHandler(this.nuds_Enter);
             // 
             // nudCostOfPurchase
             // 
@@ -434,6 +441,7 @@
             this.nudCostOfPurchase.TabIndex = 1;
             this.nudCostOfPurchase.ThousandsSeparator = true;
             this.nudCostOfPurchase.ValueChanged += new System.EventHandler(this.CalcCreditAmount);
+            this.nudCostOfPurchase.Enter += new System.EventHandler(this.nuds_Enter);
             // 
             // checkCalcAtSum
             // 
@@ -508,6 +516,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown nudCreditAmount;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 
