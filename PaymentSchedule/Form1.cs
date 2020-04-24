@@ -35,8 +35,14 @@ namespace PaymentSchedule
             tbMonthlyPayment.Text = calculator.GetMonthlyPayment();
             tbSummaryCreditAmount.Text = calculator.GetSummaryCreditAmount();
             tbSummaryOverPayment.Text = calculator.GetSummaryOverPayment();
+
+            dgvSchedule.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             for (int i = 1; i < dgvSchedule.Columns.Count; i++)
+            {
                 dgvSchedule.Columns[i].DefaultCellStyle.Format = String.Format("### ### ### ##0.#0");
+                dgvSchedule.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dgvSchedule.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
             btnExportToCSV.Enabled = true;
         }
 

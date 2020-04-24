@@ -77,7 +77,7 @@
             this.gbSchedule.Location = new System.Drawing.Point(0, 243);
             this.gbSchedule.Name = "gbSchedule";
             this.gbSchedule.Size = new System.Drawing.Size(554, 358);
-            this.gbSchedule.TabIndex = 0;
+            this.gbSchedule.TabIndex = 1;
             this.gbSchedule.TabStop = false;
             this.gbSchedule.Text = "График платежей";
             // 
@@ -100,6 +100,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.Window;
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
@@ -151,7 +152,7 @@
             this.btnExportToCSV.Location = new System.Drawing.Point(6, 208);
             this.btnExportToCSV.Name = "btnExportToCSV";
             this.btnExportToCSV.Size = new System.Drawing.Size(205, 23);
-            this.btnExportToCSV.TabIndex = 15;
+            this.btnExportToCSV.TabIndex = 3;
             this.btnExportToCSV.Text = "Экспортировать результаты в .CSV";
             this.btnExportToCSV.UseVisualStyleBackColor = true;
             // 
@@ -211,7 +212,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(330, 243);
-            this.tabControl1.TabIndex = 3;
+            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -254,7 +255,7 @@
             0});
             this.nudCreditAmount.Name = "nudCreditAmount";
             this.nudCreditAmount.Size = new System.Drawing.Size(133, 20);
-            this.nudCreditAmount.TabIndex = 15;
+            this.nudCreditAmount.TabIndex = 3;
             this.nudCreditAmount.ThousandsSeparator = true;
             // 
             // btnCalculate
@@ -262,7 +263,7 @@
             this.btnCalculate.Location = new System.Drawing.Point(183, 186);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(133, 23);
-            this.btnCalculate.TabIndex = 14;
+            this.btnCalculate.TabIndex = 7;
             this.btnCalculate.Text = "Рассчитать стоимость";
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
@@ -272,7 +273,7 @@
             this.btnClear.Location = new System.Drawing.Point(6, 186);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(171, 23);
-            this.btnClear.TabIndex = 13;
+            this.btnClear.TabIndex = 8;
             this.btnClear.Text = "Очистить расчеты";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -287,7 +288,7 @@
             this.comboPaymentType.Location = new System.Drawing.Point(183, 159);
             this.comboPaymentType.Name = "comboPaymentType";
             this.comboPaymentType.Size = new System.Drawing.Size(133, 21);
-            this.comboPaymentType.TabIndex = 12;
+            this.comboPaymentType.TabIndex = 6;
             // 
             // label6
             // 
@@ -322,7 +323,7 @@
             0});
             this.nudCreditPeriod.Name = "nudCreditPeriod";
             this.nudCreditPeriod.Size = new System.Drawing.Size(133, 20);
-            this.nudCreditPeriod.TabIndex = 9;
+            this.nudCreditPeriod.TabIndex = 5;
             this.nudCreditPeriod.Value = new decimal(new int[] {
             1,
             0,
@@ -359,7 +360,7 @@
             131072});
             this.nudCreditRate.Name = "nudCreditRate";
             this.nudCreditRate.Size = new System.Drawing.Size(133, 20);
-            this.nudCreditRate.TabIndex = 7;
+            this.nudCreditRate.TabIndex = 4;
             this.nudCreditRate.Value = new decimal(new int[] {
             65,
             0,
@@ -446,6 +447,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(554, 601);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tabControl1);
