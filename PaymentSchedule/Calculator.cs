@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Security.Policy;
 
 namespace PaymentSchedule
 {
@@ -12,8 +13,8 @@ namespace PaymentSchedule
 
     public class Calculator
     {
-        private decimal _creditRateYear; // Годовая ставка по кредиту
-        private decimal _creditRateMonth; // Месячная ставка по кредиту
+        private double _creditRateYear; // Годовая ставка по кредиту
+        private double _creditRateMonth; // Месячная ставка по кредиту
 
         private string _summaryMonthlyPayment; // ДЛЯ РЕЗУЛЬТАТОВ: ЕЖЕМЕСЯЧНЫЙ ПЛАТЕЖ
         private string _summaryCreditAmount; // ДЛЯ РЕЗУЛЬТАТОВ: ИТОГОВАЯ СУММА КРЕДИТА
@@ -22,7 +23,7 @@ namespace PaymentSchedule
         // Годовая по кредиту в процентах 
         // При установке значения автоматически приводится к математическому виду, 
         // а также вычисляется и задается месячная ставка.
-        public decimal CreditRateYear 
+        public double CreditRateYear 
         { 
             get
             {
@@ -36,11 +37,11 @@ namespace PaymentSchedule
         }
 
         // Сумма кредита
-        public decimal CreditAmount { get; set; }
+        public double CreditAmount { get; set; }
         public int CreditPeriod { get; private set; } // Срок кредита (месяцев)
         public CalcType SelectedCalcType { get; set; } // Вид платежа
 
-        public Calculator(decimal creditAmount, decimal creditRate, int creditPeriod, CalcType selectCalcType)
+        public Calculator(double creditAmount, double creditRate, int creditPeriod, CalcType selectCalcType)
         {
             CreditAmount = creditAmount;
             CreditRateYear = creditRate;
@@ -56,35 +57,36 @@ namespace PaymentSchedule
         {
             DataTable dtShedule = new DataTable();
             dtShedule.Columns.Add("Месяц", typeof(int));
-            dtShedule.Columns.Add("Сумма платежа", typeof(string));
-            dtShedule.Columns.Add("Платеж по основному долгу, руб.", typeof(string));
-            dtShedule.Columns.Add("Платеж по процентам, руб.", typeof(string));
-            dtShedule.Columns.Add("Остаток основного долга, руб.", typeof(string));
+            dtShedule.Columns.Add("Сумма платежа", typeof(double));
+            dtShedule.Columns.Add("Платеж по основному долгу, руб.", typeof(double));
+            dtShedule.Columns.Add("Платеж по процентам, руб.", typeof(double));
+            dtShedule.Columns.Add("Остаток основного долга, руб.", typeof(double));
 
-            DataRow dr = dtShedule.NewRow();
+            DataRow dr;
 
             // АННУИТЕТНЫЙ ПЛАТЕЖ
             if (SelectedCalcType == CalcType.ANNUITY)
             {
-                decimal monthlyPayment = CreditAmount * (_creditRateMonth / (1 - Pow(1 + _creditRateMonth, -CreditPeriod))); // Вычисление ежемесячного платежа
-                decimal summaryCreditAmount = monthlyPayment * CreditPeriod; // Итоговая сумма кредита
+                double monthlyPayment = CreditAmount * (_creditRateMonth / (1 - Math.Pow(1 + _creditRateMonth, -CreditPeriod))); // Вычисление ежемесячного платежа
+                double summaryCreditAmount = monthlyPayment * CreditPeriod; // Итоговая сумма кредита
 
                 _summaryMonthlyPayment = monthlyPayment.ToString("N2"); // Для результатов
                 _summaryCreditAmount = summaryCreditAmount.ToString("N2"); // Для результатов
 
-                decimal tempCreditAmount = CreditAmount;
-                decimal tempSummaryCreditAmount = summaryCreditAmount;
-                decimal tempItogPlus = 0;
+                double tempCreditAmount = CreditAmount;
+                double tempSummaryCreditAmount = summaryCreditAmount;
+                double tempItogPlus = 0;
 
                 for (int i = 1; i <= CreditPeriod; i++)
                 {
-                    decimal percent = tempCreditAmount * _creditRateMonth;
+                    dr = dtShedule.NewRow();
+                    double percent = tempCreditAmount * _creditRateMonth;
                     tempCreditAmount -= monthlyPayment - percent;
-                    dr[0] = i;
-                    dr[1] = _summaryMonthlyPayment;
-                    dr[2] = (monthlyPayment - percent).ToString("N2");
-                    dr[3] = percent.ToString("N2");
-                    dr[4] = tempCreditAmount.ToString("N2");
+                    dr[0] = i; // Месяц
+                    dr[1] = monthlyPayment; // Ежемесячный платеж
+                    dr[2] = monthlyPayment - percent; // Основной долг
+                    dr[3] = percent; // Долг по процентам
+                    dr[4] = tempCreditAmount; // Остаток основного долга
                     tempSummaryCreditAmount -= monthlyPayment;
                     if (i == CreditPeriod) tempItogPlus = tempCreditAmount;
                     dtShedule.Rows.Add(dr);
@@ -95,28 +97,56 @@ namespace PaymentSchedule
             // ДИФФЕРЕНЦИРОВАННЫЙ ПЛАТЕЖ
             if (SelectedCalcType == CalcType.DIFFERENTIATED)
             {
+                double mainPayment = CreditAmount / CreditPeriod; // Платеж по основному долгу
+                double summaryCreditAmount = 0;
+                double summaryOverPayment = 0;
+                double tempCreditAmount = CreditAmount;
+                double itogPlus = 0;
+
                 for (int i = 1; i <= CreditPeriod; i++)
                 {
+                    dr = dtShedule.NewRow();
+                    double percent = CreditAmount * _creditRateMonth; // процентная часть ежемесячного платежа
+                    double monthlyPayment = mainPayment + percent;
+                    summaryCreditAmount += monthlyPayment; // Итоговая сумма кредита
+                    summaryOverPayment += percent; // Итоговая переплата по кредиту
+                    tempCreditAmount -= mainPayment; // Остаток основного долга (с каждым месяцем уменьшается)
                     dr[0] = i;
-                    dr[1] = 2;
-                    dr[2] = 2;
-                    dr[3] = 2;
-                    dr[4] = 2;
+                    dr[1] = monthlyPayment; // Ежемесячный платеж
+                    dr[2] = mainPayment; // Основной долг
+                    dr[3] = percent; // Долг по процентам
+                    dr[4] = tempCreditAmount; // Остаток основного долга
                     dtShedule.Rows.Add(dr);
+                    if (i == 1) _summaryMonthlyPayment = monthlyPayment.ToString("N2") + "...";
+                    if (i == CreditPeriod) 
+                    { 
+                        _summaryMonthlyPayment += monthlyPayment.ToString("N2");
+                        itogPlus += tempCreditAmount;
+                    }
                 }
+
+                _summaryCreditAmount = summaryCreditAmount.ToString("N2");
+                _summaryOverPayment = (summaryOverPayment + itogPlus).ToString("N2");
+                
+
             }
             
             return dtShedule;
         }
 
-        private decimal Pow(decimal x, decimal y)
-        {
-            return 0;
-        }
-
-        public string GetOverPayment()
+        public string GetSummaryOverPayment()
         {
             return _summaryOverPayment;
+        }
+
+        public string GetSummaryCreditAmount()
+        {
+            return _summaryCreditAmount;
+        }
+
+        public string GetMonthlyPayment()
+        {
+            return _summaryMonthlyPayment;
         }
     }
 }

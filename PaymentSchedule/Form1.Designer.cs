@@ -38,9 +38,9 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbMonthlyPayment = new System.Windows.Forms.TextBox();
+            this.tbSummaryOverPayment = new System.Windows.Forms.TextBox();
+            this.tbSummaryCreditAmount = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.nudCreditAmount = new System.Windows.Forms.NumericUpDown();
@@ -107,9 +107,9 @@
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.tbMonthlyPayment);
+            this.groupBox2.Controls.Add(this.tbSummaryOverPayment);
+            this.groupBox2.Controls.Add(this.tbSummaryCreditAmount);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(330, 0);
             this.groupBox2.Name = "groupBox2";
@@ -147,6 +147,7 @@
             // 
             // btnExportToCSV
             // 
+            this.btnExportToCSV.Enabled = false;
             this.btnExportToCSV.Location = new System.Drawing.Point(6, 208);
             this.btnExportToCSV.Name = "btnExportToCSV";
             this.btnExportToCSV.Size = new System.Drawing.Size(205, 23);
@@ -181,26 +182,26 @@
             this.label7.TabIndex = 9;
             this.label7.Text = "Итоговая стоимость:";
             // 
-            // textBox4
+            // tbMonthlyPayment
             // 
-            this.textBox4.Location = new System.Drawing.Point(6, 155);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(173, 20);
-            this.textBox4.TabIndex = 2;
+            this.tbMonthlyPayment.Location = new System.Drawing.Point(6, 155);
+            this.tbMonthlyPayment.Name = "tbMonthlyPayment";
+            this.tbMonthlyPayment.Size = new System.Drawing.Size(173, 20);
+            this.tbMonthlyPayment.TabIndex = 2;
             // 
-            // textBox3
+            // tbSummaryOverPayment
             // 
-            this.textBox3.Location = new System.Drawing.Point(6, 103);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(173, 20);
-            this.textBox3.TabIndex = 1;
+            this.tbSummaryOverPayment.Location = new System.Drawing.Point(6, 103);
+            this.tbSummaryOverPayment.Name = "tbSummaryOverPayment";
+            this.tbSummaryOverPayment.Size = new System.Drawing.Size(173, 20);
+            this.tbSummaryOverPayment.TabIndex = 1;
             // 
-            // textBox2
+            // tbSummaryCreditAmount
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 51);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(173, 20);
-            this.textBox2.TabIndex = 0;
+            this.tbSummaryCreditAmount.Location = new System.Drawing.Point(6, 51);
+            this.tbSummaryCreditAmount.Name = "tbSummaryCreditAmount";
+            this.tbSummaryCreditAmount.Size = new System.Drawing.Size(173, 20);
+            this.tbSummaryCreditAmount.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -477,9 +478,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbMonthlyPayment;
+        private System.Windows.Forms.TextBox tbSummaryOverPayment;
+        private System.Windows.Forms.TextBox tbSummaryCreditAmount;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
