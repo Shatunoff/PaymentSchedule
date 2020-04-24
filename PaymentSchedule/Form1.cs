@@ -49,12 +49,18 @@ namespace PaymentSchedule
             nudInitialPayment.Value = nudInitialPayment.Minimum;
             nudCreditAmount.Value = nudCreditAmount.Minimum;
             nudCreditPeriod.Value = nudCreditPeriod.Minimum;
-            nudCreditRate.Value = nudCreditRate.Minimum;
+            nudCreditRate.Value = 6.5M;
             comboPaymentType.SelectedIndex = 0;
             tbMonthlyPayment.Clear();
             tbSummaryCreditAmount.Clear();
             tbSummaryOverPayment.Clear();
             btnExportToCSV.Enabled = false;
+        }
+
+        private void CalcCreditAmount(object sender, EventArgs e)
+        {
+            decimal cAm = Calculator.GetCreditAmount(nudCostOfPurchase.Value, nudInitialPayment.Value);
+            nudCreditAmount.Value = cAm < 0? cAm : 0;
         }
     }
 }

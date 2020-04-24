@@ -340,15 +340,31 @@
             // 
             // nudCreditRate
             // 
+            this.nudCreditRate.DecimalPlaces = 2;
+            this.nudCreditRate.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            131072});
             this.nudCreditRate.Location = new System.Drawing.Point(183, 107);
             this.nudCreditRate.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
+            this.nudCreditRate.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.nudCreditRate.Name = "nudCreditRate";
             this.nudCreditRate.Size = new System.Drawing.Size(133, 20);
             this.nudCreditRate.TabIndex = 7;
+            this.nudCreditRate.Value = new decimal(new int[] {
+            65,
+            0,
+            0,
+            65536});
             // 
             // label3
             // 
@@ -394,6 +410,7 @@
             this.nudInitialPayment.Size = new System.Drawing.Size(133, 20);
             this.nudInitialPayment.TabIndex = 2;
             this.nudInitialPayment.ThousandsSeparator = true;
+            this.nudInitialPayment.ValueChanged += new System.EventHandler(this.CalcCreditAmount);
             // 
             // nudCostOfPurchase
             // 
@@ -412,6 +429,7 @@
             this.nudCostOfPurchase.Size = new System.Drawing.Size(133, 20);
             this.nudCostOfPurchase.TabIndex = 1;
             this.nudCostOfPurchase.ThousandsSeparator = true;
+            this.nudCostOfPurchase.ValueChanged += new System.EventHandler(this.CalcCreditAmount);
             // 
             // checkCalcAtSum
             // 

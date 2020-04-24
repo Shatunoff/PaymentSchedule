@@ -148,5 +148,10 @@ namespace PaymentSchedule
         {
             return _summaryMonthlyPayment;
         }
+
+        public static decimal GetCreditAmount(decimal costOfPurchase, decimal initialPayment)
+        {
+            return costOfPurchase - initialPayment;
+        }
     }
 }
