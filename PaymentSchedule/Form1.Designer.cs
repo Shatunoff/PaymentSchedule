@@ -157,6 +157,7 @@
             this.btnExportToCSV.TabIndex = 3;
             this.btnExportToCSV.Text = "Экспортировать результаты в .CSV";
             this.btnExportToCSV.UseVisualStyleBackColor = true;
+            this.btnExportToCSV.Click += new System.EventHandler(this.btnExportToCSV_Click);
             // 
             // label9
             // 

@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator.cs" />
+    <Compile Include="Export.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

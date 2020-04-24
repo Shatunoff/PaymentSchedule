@@ -88,5 +88,14 @@ namespace PaymentSchedule
             if (e.KeyCode == Keys.K)
                 nudCreditPeriod.Value *= 12;
         }
+
+        private void btnExportToCSV_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "Экспорт графика платежей";
+            save.Filter = "*.CSV-файл с разделителями |*.csv";
+            if (save.ShowDialog() == DialogResult.OK)
+                Export.ToCSV(dtShedule, save.FileName);
+        }
     }
 }
