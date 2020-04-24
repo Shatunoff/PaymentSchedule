@@ -106,7 +106,7 @@ namespace PaymentSchedule
                 for (int i = 1; i <= CreditPeriod; i++)
                 {
                     dr = dtShedule.NewRow();
-                    double percent = CreditAmount * _creditRateMonth; // процентная часть ежемесячного платежа
+                    double percent = tempCreditAmount * _creditRateMonth; // процентная часть ежемесячного платежа
                     double monthlyPayment = mainPayment + percent;
                     summaryCreditAmount += monthlyPayment; // Итоговая сумма кредита
                     summaryOverPayment += percent; // Итоговая переплата по кредиту
