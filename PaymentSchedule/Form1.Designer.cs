@@ -332,11 +332,12 @@
             this.nudCreditPeriod.Size = new System.Drawing.Size(133, 20);
             this.nudCreditPeriod.TabIndex = 5;
             this.nudCreditPeriod.Value = new decimal(new int[] {
-            1,
+            60,
             0,
             0,
             0});
             this.nudCreditPeriod.Enter += new System.EventHandler(this.nuds_Enter);
+            this.nudCreditPeriod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nudCreditPeriod_KeyDown);
             // 
             // label4
             // 

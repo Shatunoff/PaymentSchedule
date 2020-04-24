@@ -54,7 +54,7 @@ namespace PaymentSchedule
             nudCostOfPurchase.Value = nudCostOfPurchase.Minimum;
             nudInitialPayment.Value = nudInitialPayment.Minimum;
             nudCreditAmount.Value = nudCreditAmount.Minimum;
-            nudCreditPeriod.Value = nudCreditPeriod.Minimum;
+            nudCreditPeriod.Value = 60M;
             nudCreditRate.Value = 6.5M;
             comboPaymentType.SelectedIndex = 0;
             tbMonthlyPayment.Clear();
@@ -81,6 +81,12 @@ namespace PaymentSchedule
         {
             if (sender is NumericUpDown)
                 (sender as NumericUpDown).Select(0, (sender as NumericUpDown).Value.ToString().Length);
+        }
+
+        private void nudCreditPeriod_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.K)
+                nudCreditPeriod.Value *= 12;
         }
     }
 }
