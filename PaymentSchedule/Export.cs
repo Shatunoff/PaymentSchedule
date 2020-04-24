@@ -5,12 +5,13 @@ using System.Text;
 using System.Data;
 using System.IO;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PaymentSchedule
 {
     public static class Export
     {
-        public static void ToCSV(DataTable dataTable, string filename)
+        public static void ToCSV(string filename, DataTable dataTable, string summaryCreditAmount, string creditAmount, string summaryOverpayment)
         {
             FileStream fs = null;
             StreamWriter sw = null;
@@ -18,9 +19,14 @@ namespace PaymentSchedule
             {
                 fs = new FileStream(filename, FileMode.Create, FileAccess.Write);
                 sw = new StreamWriter(fs, Encoding.Default);
-                sw.WriteLine(string.Join(";", dataTable.Columns[0].Caption, dataTable.Columns[1].Caption, dataTable.Columns[2].Caption, dataTable.Columns[3].Caption, dataTable.Columns[4].Caption));
+                sw.WriteLine(String.Join(";", dataTable.Columns[0].Caption, dataTable.Columns[1].Caption, dataTable.Columns[2].Caption, dataTable.Columns[3].Caption, dataTable.Columns[4].Caption));
                 for (int i = 0; i < dataTable.Rows.Count; i++)
-                    sw.WriteLine($"{dataTable.Rows[i][0].ToString()};{dataTable.Rows[i][1].ToString()};{dataTable.Rows[i][2].ToString()};{dataTable.Rows[i][3].ToString()};{dataTable.Rows[i][4].ToString()}");
+                    sw.WriteLine(String.Join(";", dataTable.Rows[i][0], dataTable.Rows[i][1], dataTable.Rows[i][2], dataTable.Rows[i][3], dataTable.Rows[i][4]));
+                sw.WriteLine(String.Join(";", "Итого", summaryCreditAmount, creditAmount, summaryOverpayment));
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
             finally
             {

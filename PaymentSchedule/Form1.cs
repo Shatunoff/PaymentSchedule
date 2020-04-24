@@ -66,7 +66,7 @@ namespace PaymentSchedule
         private void CalcCreditAmount(object sender, EventArgs e)
         {
             decimal cAm = Calculator.GetCreditAmount(nudCostOfPurchase.Value, nudInitialPayment.Value);
-            nudCreditAmount.Value = cAm < 0? cAm : 0;
+            nudCreditAmount.Value = cAm < 0? 0 : cAm;
         }
 
         private void comboPaymentType_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace PaymentSchedule
             save.Title = "Экспорт графика платежей";
             save.Filter = "*.CSV-файл с разделителями |*.csv";
             if (save.ShowDialog() == DialogResult.OK)
-                Export.ToCSV(dtShedule, save.FileName);
+                Export.ToCSV(save.FileName, dtShedule, tbSummaryCreditAmount.Text, nudCreditAmount.Value.ToString(), tbSummaryOverPayment.Text);
         }
     }
 }
