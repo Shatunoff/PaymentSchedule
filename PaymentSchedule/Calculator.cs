@@ -134,21 +134,39 @@ namespace PaymentSchedule
             return dtShedule;
         }
 
+        /// <summary>
+        /// Итоговая переплата по кредиту
+        /// </summary>
+        /// <returns></returns>
         public string GetSummaryOverPayment()
         {
             return _summaryOverPayment;
         }
 
+        /// <summary>
+        /// Итоговая стоимость кредита
+        /// </summary>
+        /// <returns></returns>
         public string GetSummaryCreditAmount()
         {
             return _summaryCreditAmount;
         }
 
+        /// <summary>
+        /// Ежемесячный платеж по кредиту
+        /// </summary>
+        /// <returns></returns>
         public string GetMonthlyPayment()
         {
             return _summaryMonthlyPayment;
         }
 
+        /// <summary>
+        /// Расчет суммы кредита исходя из стоимости покупки и первоначального взноса
+        /// </summary>
+        /// <param name="costOfPurchase">Стоимость покупки</param>
+        /// <param name="initialPayment">Первоначальный взнос</param>
+        /// <returns></returns>
         public static decimal GetCreditAmount(decimal costOfPurchase, decimal initialPayment)
         {
             return costOfPurchase - initialPayment;
