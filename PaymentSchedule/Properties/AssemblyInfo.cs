@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("PaymentSchedule")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Кредитный калькулятор")]
+[assembly: AssemblyDescription("Кредитный калькулятор. Расчет графика платежей по стоимости покупки или сумме кредита. Экспорт в .CSV. Реализация на Windows Forms.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Shatunoff")]
 [assembly: AssemblyProduct("PaymentSchedule")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]

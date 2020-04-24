@@ -187,6 +187,7 @@
             // 
             this.tbMonthlyPayment.Location = new System.Drawing.Point(6, 155);
             this.tbMonthlyPayment.Name = "tbMonthlyPayment";
+            this.tbMonthlyPayment.ReadOnly = true;
             this.tbMonthlyPayment.Size = new System.Drawing.Size(173, 20);
             this.tbMonthlyPayment.TabIndex = 2;
             // 
@@ -194,6 +195,7 @@
             // 
             this.tbSummaryOverPayment.Location = new System.Drawing.Point(6, 103);
             this.tbSummaryOverPayment.Name = "tbSummaryOverPayment";
+            this.tbSummaryOverPayment.ReadOnly = true;
             this.tbSummaryOverPayment.Size = new System.Drawing.Size(173, 20);
             this.tbSummaryOverPayment.TabIndex = 1;
             // 
@@ -201,6 +203,7 @@
             // 
             this.tbSummaryCreditAmount.Location = new System.Drawing.Point(6, 51);
             this.tbSummaryCreditAmount.Name = "tbSummaryCreditAmount";
+            this.tbSummaryCreditAmount.ReadOnly = true;
             this.tbSummaryCreditAmount.Size = new System.Drawing.Size(173, 20);
             this.tbSummaryCreditAmount.TabIndex = 0;
             // 
